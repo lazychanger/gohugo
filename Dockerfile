@@ -8,6 +8,7 @@ FROM golang:1.21-alpine AS build
 #   docker build --build-arg HUGO_BUILD_TAGS=extended .
 ARG HUGO_BUILD_TAGS
 
+ARG GOPROXY="https://goproxy.cn"
 ARG CGO=1
 ENV CGO_ENABLED=${CGO}
 ENV GOOS=linux
@@ -41,5 +42,4 @@ WORKDIR /site
 # Expose port for live server
 EXPOSE 1313
 
-ENTRYPOINT ["hugo"]
-CMD ["--help"]
+CMD ["hugo", "--help"]
